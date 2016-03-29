@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+  "description": "CommandLineParser.Sprache Class Library",
+  "authors": [ "damre" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "frameworks": {
+    "net451": {  
+    }
+  },
+"dependencies": {
+    "Sprache": "2.0.0.51"
+}
+
+}

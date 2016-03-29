@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5B1FA79E-A5C2-49D8-9741-862D56FA7381}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8952523E-AFE6-42E7-854A-12A89803C9D9}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CommandLineParser.Sprache", "src\CommandLineParser.Sprache\CommandLineParser.Sprache.xproj", "{003889C6-3C49-4929-975B-333F565B0DD3}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "CommandLineParser.Sprache.Tests", "test\CommandLineParser.Sprache.Tests\CommandLineParser.Sprache.Tests.xproj", "{B9484009-068C-4D69-A7F3-530AF1CC51FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{003889C6-3C49-4929-975B-333F565B0DD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{003889C6-3C49-4929-975B-333F565B0DD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{003889C6-3C49-4929-975B-333F565B0DD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{003889C6-3C49-4929-975B-333F565B0DD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9484009-068C-4D69-A7F3-530AF1CC51FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9484009-068C-4D69-A7F3-530AF1CC51FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9484009-068C-4D69-A7F3-530AF1CC51FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9484009-068C-4D69-A7F3-530AF1CC51FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{003889C6-3C49-4929-975B-333F565B0DD3} = {5B1FA79E-A5C2-49D8-9741-862D56FA7381}
+		{B9484009-068C-4D69-A7F3-530AF1CC51FF} = {5B1FA79E-A5C2-49D8-9741-862D56FA7381}
+	EndGlobalSection
+EndGlobal
