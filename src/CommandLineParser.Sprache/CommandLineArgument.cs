@@ -1,88 +1,113 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CommandLineParser.Sprache
 {
-    public abstract class CommandLineArgument
+    public abstract class CommandLineArgument : IEquatable<CommandLineArgument>
     {
         private CommandLineArgument(string value)
         {
             Value = value;
         }
 
-        public string Value { get; }
+        public string Value
+        {
+            get;
+        }
+
+        public bool Equals(CommandLineArgument other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return string.Equals(Value, other.Value);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((CommandLineArgument) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return (Value != null ? Value.GetHashCode() : 0);
+        }
+
+        public static bool operator ==(CommandLineArgument left, CommandLineArgument right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(CommandLineArgument left, CommandLineArgument right)
+        {
+            return !Equals(left, right);
+        }
 
         public class CommandLineProperty : CommandLineArgument
         {
-            public CommandLineProperty(string name, string value) : base(value)
+            public CommandLineProperty(string name, string value): base (value)
             {
                 Name = name;
             }
 
-            public string Name { get; }
+            public string Name
+            {
+                get;
+            }
+        }
+
+        public class CommandLineOption: CommandLineArgument, IEquatable<CommandLineOption>
+        {
+            public CommandLineOption(string name): base (name)
+            {
+                Name = name;
+            }
+
+            public string Name
+            {
+                get;
+            }
+
+            public bool Equals(CommandLineOption other)
+            {
+                if (ReferenceEquals(null, other)) return false;
+                if (ReferenceEquals(this, other)) return true;
+                return base.Equals(other) && string.Equals(Name, other.Name);
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (ReferenceEquals(null, obj)) return false;
+                if (ReferenceEquals(this, obj)) return true;
+                if (obj.GetType() != this.GetType()) return false;
+                return Equals((CommandLineOption) obj);
+            }
+
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    return (base.GetHashCode()*397) ^ (Name != null ? Name.GetHashCode() : 0);
+                }
+            }
+
+            public static bool operator ==(CommandLineOption left, CommandLineOption right)
+            {
+                return Equals(left, right);
+            }
+
+            public static bool operator !=(CommandLineOption left, CommandLineOption right)
+            {
+                return !Equals(left, right);
+            }
         }
 
         public class CommandLineArg : CommandLineArgument
         {
-            public CommandLineArg(string value) : base(value)
+            public CommandLineArg(string value): base (value)
             {
             }
-        }
-    }
-
-    public abstract class Literal
-    {
-        private Literal(string text, QuoteType quoteType)
-        {
-            Text = text;
-            QuoteType = quoteType;
-        }
-        public string Text { get; }
-        public QuoteType QuoteType { get; }
-
-        public static Literal Unquoted(string text)
-        {
-            return new UnquotedLiteral(text);
-        }
-
-        public static Literal DoubleQuoted(string text)
-        {
-            return new DoubleQuotedLiteral(text);
-        }
-
-        public static Literal SingleQuoted(string text)
-        {
-            return new SingleQuotedLiteral(text);
-        }
-
-        public sealed class UnquotedLiteral : Literal
-        {
-            public UnquotedLiteral(string text) : base(text, QuoteType.None)
-            {
-            }
-        }
-
-        public sealed class DoubleQuotedLiteral : Literal
-        {
-            public DoubleQuotedLiteral(string text):base(text, QuoteType.DoubleQuoted)
-            {                
-            }
-        }
-
-        public sealed class SingleQuotedLiteral : Literal
-        {
-            public SingleQuotedLiteral(string text) : base(text, QuoteType.SingleQuoted)
-            {                
-            }
-        }
-    }
-
-    public enum QuoteType
-    {
-        None,
-        DoubleQuoted,
-        SingleQuoted
+        }        
     }
 }
